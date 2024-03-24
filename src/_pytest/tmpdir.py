@@ -111,7 +111,7 @@ class TempPathFactory:
     def _ensure_relative_to_basetemp(self, basename: str) -> str:
         basename = os.path.normpath(basename)
         if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
-            raise ValueError(f"{basename} is not a normalized and relative path")
+            raise RuntimeError(f"{basename} is not a normalized and relative path")
         return basename
 
     def mktemp(self, basename: str, numbered: bool = True) -> Path:
